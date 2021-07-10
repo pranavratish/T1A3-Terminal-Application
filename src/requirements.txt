@@ -1,0 +1,4 @@
+cowsay
+pyperclip
+emoji
+termcolor
