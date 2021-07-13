@@ -34,3 +34,15 @@ def validKey():
     else:
         print('Invalid Key.\nPlease Try Again.')
 
+def edit():
+    update = input('What would you like to change the information to?:\n')
+    reenter = input('Please enter your key again:\n')
+    update = str(update)
+    reenter = str(reenter)
+
+    with open('src/storage.json', 'r') as s:
+        d = json.load(s)
+        d[reenter] = update
+    
+    with open('src/storage.json', 'w') as s:
+        s.write(json.dumps(d))
