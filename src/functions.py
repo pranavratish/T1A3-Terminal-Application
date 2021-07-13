@@ -51,9 +51,15 @@ def delete():
     objDel = input('Which key would you like to delete:\n')
     objDel = str(objDel)
 
-    with open('src/storage.json', 'r') as s:
-        d = json.load(s)
-        d.pop(objDel)
-    
-    with open('src/storage.json', 'w') as s:
-        s.write(json.dumps(d))
+    confirm = input('Are you sure about this? You won\'t be able to get this information back, if you are sure please press \'Y\':\n')    
+
+    if confirm == 'Y':
+        with open('src/storage.json', 'r') as s:
+            d = json.load(s)
+            d.pop(objDel)
+        
+        with open('src/storage.json', 'w') as s:
+            s.write(json.dumps(d))
+    else:
+        return
+
