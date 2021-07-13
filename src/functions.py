@@ -46,3 +46,14 @@ def edit():
     
     with open('src/storage.json', 'w') as s:
         s.write(json.dumps(d))
+
+def delete():
+    objDel = input('Which key would you like to delete:\n')
+    objDel = str(objDel)
+
+    with open('src/storage.json', 'r') as s:
+        d = json.load(s)
+        d.pop(objDel)
+    
+    with open('src/storage.json', 'w') as s:
+        s.write(json.dumps(d))
