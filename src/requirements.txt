@@ -2,3 +2,4 @@ cowsay
 pyperclip
 emoji
 termcolor
+cryptography
