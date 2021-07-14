@@ -94,4 +94,33 @@ def newUser():
         with open('src/users.json', 'w') as u:
             u.write(json.dumps(l))
 
+def editUser():
+    currU = input('Please enter your current Username:\n')
+    currU = str(currU)
 
+    userNew = input('What would you like to change your name to?:\n')
+    userNew = str(userNew)
+
+    if userNew.isalpha() != True or currU.isalpha() != True:
+        print('That was an invalid username.\nPlease ensure that you use only letters in your username and try again.')
+        return
+
+    c_acc_u = {}
+    c_acc_u['Username'] = currU
+
+    n_acc_u = {}
+    n_acc_u['Username'] = userNew
+
+    usr = open('src/users.json')
+    usr_new = json.load(usr)
+
+    if usr_new.count(n_acc_u) > 0:
+        print('There is already a user with this name.\nPlease try again.')
+        return
+    else:
+        with open('src/users.json', 'r') as u:
+            l = json.load(u)
+            l = [n_acc_u if i == c_acc_u else i for i in l]
+        
+        with open('src/users.json', 'w') as u:
+            u.write(json.dumps(l))
