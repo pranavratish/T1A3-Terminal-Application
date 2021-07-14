@@ -154,3 +154,34 @@ def editPass():
         u.write(json.dumps(l))
     
     print('Your Password has been updated.')
+
+def deleteAcc():
+    user = str(input('Username:\n'))
+    pas = str(input('Password:\n'))
+
+    chU = {}
+    chU['Username'] = user
+
+    chP = {}
+    chP['Password'] = pas
+
+    usr = open('src/users.json')
+    usr_new = json.load(usr)
+
+    if usr_new.count(chU) > 0 and usr_new.count(chP) > 0:
+        conf = input('Are you sure you want to delete your account.\nYou will lose all saved encryptions. There is no way to recover your account.\nIf you wish to continue, confirm the termination of your account by pressing \'Y\':\n')
+        if conf == 'Y':
+            with open('src/users.json', 'r') as u:
+                l = json.load(u)
+                l.pop(l.index(chU))
+                l.pop(l.index(chP))
+
+            with open('src/users.json', 'w') as u:
+                u.write(json.dumps(l))
+            
+            print('Your account has been deleted.')
+        else:
+            return
+    else:
+        print('This account cannot be deleted as it does not exist.')
+        return    
