@@ -19,7 +19,7 @@ def secure():
     with open('src/storage.json', 'w') as s:
         s.write(json.dumps(d))
 
-    print(encrypted)
+    print(f'This is your key: {encrypted}')
 
 def validKey():
     key_input = input('Please enter the key associated with the information you are trying to access:\n')
@@ -45,6 +45,8 @@ def edit():
     
     with open('src/storage.json', 'w') as s:
         s.write(json.dumps(d))
+    
+    print('Your information has been updated.')
 
 def delete():
     objDel = input('Which key would you like to delete:\n')
@@ -59,6 +61,8 @@ def delete():
         
         with open('src/storage.json', 'w') as s:
             s.write(json.dumps(d))
+        
+        print('Your information has been deleted.')
     else:
         return
 
@@ -93,6 +97,8 @@ def newUser():
 
         with open('src/users.json', 'w') as u:
             u.write(json.dumps(l))
+        
+        print('Your account has been created.')
 
 def editUser():
     currU = input('Please enter your current Username:\n')
@@ -124,3 +130,27 @@ def editUser():
         
         with open('src/users.json', 'w') as u:
             u.write(json.dumps(l))
+        
+        print('Your Username has been updated.')
+
+def editPass():
+    currP = input('Please enter your current Password:\n')
+    currP = str(currP)
+
+    newPass = input('What would you like to change your Password to?:\n')
+    newPass = str(newPass)
+
+    c_acc_p = {}
+    c_acc_p['Password'] = currP
+
+    n_acc_p = {}
+    n_acc_p['Password'] = newPass
+
+    with open('src/users.json', 'r') as u:
+        l = json.load(u)
+        l = [n_acc_p if i == c_acc_p else i for i in l]
+    
+    with open('src/users.json', 'w') as u:
+        u.write(json.dumps(l))
+    
+    print('Your Password has been updated.')
