@@ -185,3 +185,21 @@ def deleteAcc():
     else:
         print('This account cannot be deleted as it does not exist.')
         return    
+
+def login():
+    user = str(input('Username:\n'))
+    pas = str(input('Password:\n'))
+
+    chU = {}
+    chU['Username'] = user
+
+    chP = {}
+    chP['Password'] = pas
+
+    usr = open('src/users.json')
+    usr_new = json.load(usr)
+
+    if usr_new.count(chU) > 0 and usr_new.count(chP) > 0:
+        print(f'Welcome User, {user}')
+        return
+
