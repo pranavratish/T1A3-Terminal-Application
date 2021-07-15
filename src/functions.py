@@ -200,6 +200,10 @@ def login():
     usr_new = json.load(usr)
 
     if usr_new.count(chU) > 0 and usr_new.count(chP) > 0:
-        print(f'Welcome User, {user}')
+        print(f'Welcome User: {user}')
         return
 
+def h():    
+    with open('docs/help-documentation.md', 'r') as help_:
+        readHelp = help_.read()
+        print(readHelp)
