@@ -1,6 +1,31 @@
 from cryptography.fernet import Fernet
 import json
 
+def firstEncrypt():
+    key = Fernet.generate_key()
+
+    info = input('What would you like to encrypt?:\n')
+    data = info.encode()
+
+    f = Fernet(key)
+    encrypted = f.encrypt(data)
+
+    s_encrypted = encrypted.decode()
+
+    newEncrypt = {}
+    newEncrypt[s_encrypted] = info
+
+    check = str(input('Please confirm Username:\n'))
+
+    with open('src/storage.json', 'r') as s:
+        d = json.load(s)
+        d['Users'][check] = newEncrypt
+
+    with open('src/storage.json', 'w') as s:
+        s.write(json.dumps(d))
+
+    print(f'This is your key: {encrypted}')
+
 def secure():
     key = Fernet.generate_key()
 
@@ -12,9 +37,14 @@ def secure():
 
     s_encrypted = encrypted.decode()
 
+    newEncrypt = {}
+    newEncrypt[s_encrypted] = info
+
+    check = str(input('Please confirm Username:\n'))
+
     with open('src/storage.json', 'r') as s:
         d = json.load(s)
-        d[s_encrypted] = info
+        d['Users'][check].update(newEncrypt)
 
     with open('src/storage.json', 'w') as s:
         s.write(json.dumps(d))
@@ -25,23 +55,25 @@ def validKey():
     key_input = input('Please enter the key associated with the information you are trying to access:\n')
     key_input = str(key_input)
 
+    check = str(input('Please confirm Username:\n'))
+
     k = open('src/storage.json')
     k_pass = json.load(k)
 
-    if key_input in k_pass:
-        print(k_pass[key_input])
+    if key_input in k_pass['Users'][check]:
+        print(k_pass['Users'][check][key_input])
     else:
         print('Invalid Key.\nPlease Try Again.')
 
 def edit():
-    update = input('What would you like to change the information to?:\n')
-    reenter = input('Please enter your key again:\n')
-    update = str(update)
-    reenter = str(reenter)
+    update = str(input('What would you like to change the information to?:\n'))
+    reenter = str(input('Please enter your key again:\n'))
+
+    check = str(input('Please confirm Username:\n'))
 
     with open('src/storage.json', 'r') as s:
         d = json.load(s)
-        d[reenter] = update
+        d['Users'][check][reenter] = update
     
     with open('src/storage.json', 'w') as s:
         s.write(json.dumps(d))
@@ -67,8 +99,7 @@ def delete():
         return
 
 def newUser():
-    user = input('Please enter a unique username:\n')
-    user = str(user)
+    user = str(input('Please enter a unique username:\n'))
 
     if user.isalpha() != True:
         print('That was an invalid username.\nPlease ensure that you use only letters in your username and try again.')
@@ -82,6 +113,9 @@ def newUser():
 
     acc_p = {}
     acc_p['Password'] = pass_
+
+    accStor = {}
+    accStor[user] = 0
 
     usr = open('src/users.json')
     usr_pass = json.load(usr)
@@ -98,6 +132,13 @@ def newUser():
         with open('src/users.json', 'w') as u:
             u.write(json.dumps(l))
         
+        with open('src/storage.json', 'r') as s:
+            d = json.load(s)
+            d['Users'].update(accStor)
+
+        with open('src/storage.json', 'w') as s:
+            s.write(json.dumps(d))
+
         print('Your account has been created.')
 
 def editUser():
