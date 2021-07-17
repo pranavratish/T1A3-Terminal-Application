@@ -6,13 +6,15 @@ from cryptography.fernet import Fernet
 from simple_term_menu import TerminalMenu
 import methods
 
+os.system('clear')
+
 def start():
     main_menu_title = ' Welcome to Black-Box\n'
     main_menu_options = [
         'Login',
         'New User',
-        'Help',
-        'Exit']
+        'Exit'
+    ]
     main_menu_cursor = '> '
     main_menu_c_style = ('fg_cyan', 'bold')
     main_menu_theme = ('bg_black', 'fg_yellow')
@@ -173,17 +175,13 @@ def start():
                         profile_menu_exit = True
                 profile_menu_exit = False
             else:
-                print('I am sorry but that user does not exist.')
+                print('I am sorry but that user does not exist, or perhaps you have entered the wrong username/password.')
         
         elif main_sel == 1:
             methods.newUser()
             sleep(3)
         
         elif main_sel == 2:
-            methods.h()
-            sleep(120)
-        
-        elif main_sel == 3:
             main_menu_exit = True
 
 start()
