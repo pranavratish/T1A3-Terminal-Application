@@ -1,0 +1,42 @@
+Help
+******************************
+Installation
+******************************
+Using the "./Black-Box.sh -prInstall" you will be prompted to download the required modules and the 'pip'
+installer for them. After this run "./Black-Box.sh" if Python 3 or higher is installed.
+
+Required External Modules
+******************************
+Black-Box uses these external modules:
+    - simple-term-menu
+    - Cryptography
+
+System Requirements
+******************************
+You will need to have Python in order to run the program.
+Version 3.9.2 or higher is recommended, however Python 3 is a requirement.
+The system will also require access to a terminal or command line of some form.
+
+Features
+******************************
+Home Screen:
+- Login: Enter your login details, Takes you to the Profile menu
+- New User: Create a new account within the application
+- Exit: Exits the application
+Profile:
+- Encryption: Allows you to encrypt any information and receive a key. MAKE SURE YOU DON'T LOSE IT. If you
+lose the key you will not be able to access your information. Please make sure to write it down somewhere
+if you need to
+- Encryption Library: Allows you to access previously encrypted information as long as you have the key.
+Takes you to the Encryption Library menu
+- Edit Profile: Takes you to the edit profile menu
+- Exit to Home Screen: Takes you to the Home Screen
+Encryption Library Menu:
+- Edit: allows you to edit previously stored information with key.
+- Delete: allows you to delete previously stored information with key.
+- Exit to Profile: takes you to Profile Screen
+Edit Profile Menu:
+- Edit Username: allows you to edit current Username
+- Edit Password: allows you to edit current Password
+- Delete Account: Allows you to delete the current account. Doing this will terminate the application.
+- Exit to Profile: takes you to Profile Screen
