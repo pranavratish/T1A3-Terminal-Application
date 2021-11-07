@@ -4,7 +4,7 @@
 
 ## Statement of Purpose and Scope
 
-Black-Box is a terminal application that encrypts any information that the user gives it. It is designed as to store this information securely within a profile you create in the application. The app provides the user with an encryption key they can use to access the information stored within their account.
+Black-Box is a terminal application that encrypts any information that the user gives it. It is designed to store this information securely within a profile you create in the application. The app provides the user with an encryption key they can use to access the information stored within their account.
 
 The purpose behind Black-Box is to provide a safe space to store information locally on the users device. In todays world, as we integrate ourselves into the global society that exists on the internet, we tend to share more and more of our personal details, knowingly and unknowingly, with complete strangers. Although this application will not solve all the users safety needs, it does provide them with a storage space for information that they consider particularly sensitive, acting almost like a 'little black book' or a diary... with a little more security.
 
